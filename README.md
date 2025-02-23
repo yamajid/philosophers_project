@@ -1,29 +1,129 @@
-Philo - Philosophers with Threads and Mutexes
+# 🍝 Philosophers - Thread Synchronization Project
 
-Overview :
+## Overview
+An efficient solution to the classic Dining Philosophers problem, implementing thread management and mutex synchronization in C. This project demonstrates advanced understanding of concurrent programming and resource sharing in multi-threaded environments.
 
-The Philo project simulates philosophers sitting at a round table, eating, thinking, and sleeping. 
-The simulation involves managing threads and mutexes to ensure proper synchronization and avoid data races.
 
-Project Structure: 
+## 🔍 Technical Proficiency Demonstrated
+This project showcases my ability to:
+- Implement complex multi-threaded applications
+- Handle critical sections and race conditions
+- Manage system resources efficiently
+- Debug concurrent programming issues
+- Optimize performance in multi-threaded environments
 
-  Program Name: philo
-  Files: Makefile, *.h, *.c
-  Makefile Targets: NAME, all, clean, fclean, re
+## 🛠 Technical Implementation
 
+### Core Features
+- Thread-safe philosopher state management
+- Mutex-protected fork allocation
+- Precise timing control
+- Death detection system
+- Resource cleanup handling
+  
+- ## 💡 Key Learnings
+- Advanced thread synchronization
+- Mutex management strategies
+- Race condition prevention
+- Resource allocation patterns
+- Performance optimization
+
+## 🚀 Skills Demonstrated
+
+### Threading Concepts
+- Thread creation and management
+- Mutex synchronization
+- Condition variables
+- Critical section handling
+
+### System Programming
+- Process management
+- Memory management
+- Time precision handling
+- Signal handling
+
+## 📝 Project Status
+- ✅ Core implementation complete
+- ✅ Thread safety verified
+- ✅ Performance optimized
+- ✅ Memory leaks addressed
+  
+## 📊 Performance Considerations
+
+### Resource Optimization
+- Efficient mutex locking patterns
+- Minimal context switching
+- Optimized memory usage
+- Clean thread termination
+
+### Deadlock Prevention
+- Resource hierarchy
+- Timeout mechanisms
+- State monitoring
+- Fork allocation strategy
+
+
+### Key Metrics
+```c
+struct s_program
+{
+    int philosophers;     // Number of philosophers
+    int time_to_die;     // Maximum time without eating
+    int time_to_eat;     // Time required to eat
+    int time_to_sleep;   // Sleep duration
+    int meals_required;  // Optional: meal count target
+};
+```
+
+## 💻 Usage
+
+### Compilation
+```bash
+# Build the program
 make
-./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 
-number_of_philosophers: The number of philosophers and forks.
-time_to_die (in milliseconds): Time for a philosopher to die if they haven't eaten.
-time_to_eat (in milliseconds): Time it takes for a philosopher to eat.
-time_to_sleep (in milliseconds): Time a philosopher spends sleeping.
-[number_of_times_each_philosopher_must_eat]: Optional argument to stop when philosophers have eaten a specified number of times.
+# Clean build files
+make clean
 
-Mandatory Part Rules :
+# Full rebuild
+make re
+```
 
-  Each philosopher should be a thread.
-  There is one fork between each pair of philosophers.
-  If there are several philosophers, each philosopher has a fork on their left and right side.
-  If there is only one philosopher, there should be only one fork on the table.
-  To prevent duplicating forks, the forks' state should be protected with a mutex for each.
+### Running the Simulation
+```bash
+# test with 200 thread or small than 
+# Basic usage
+./philo <philos> <death_time> <eat_time> <sleep_time>
+
+# With meal count
+./philo <philos> <death_time> <eat_time> <sleep_time> <meal_count>
+
+# Example
+./philo 5 800 200 200 5
+```
+
+## 🔧 Technical Details
+
+### Thread Management
+```c
+// Thread creation for each philosopher
+for (i = 0; i < num_philos; i++) {
+    pthread_create(&philos[i].thread, NULL, 
+                  philosopher_routine, &philos[i]);
+}
+```
+
+### Mutex Implementation
+```c
+// Fork protection
+pthread_mutex_t forks[num_philos];
+for (i = 0; i < num_philos; i++) {
+    pthread_mutex_init(&forks[i], NULL);
+}
+```
+
+
+
+*"Solving concurrent programming challenges with elegant solutions"*
+
+</div>
